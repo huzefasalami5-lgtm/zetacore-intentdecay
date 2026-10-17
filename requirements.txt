@@ -1,0 +1,26 @@
+# ==============================================================================
+# ZetaCore: IntentDecay - Requirements
+# IBM Z Datathon 2026: AI Secured: Innovation Without Exposure
+# Optimized for LinuxONE / s390x and CPU-only architectures
+# ==============================================================================
+
+# Core Math & Numerical Vector Processing
+numpy>=1.24.0
+pandas>=1.5.0
+
+# Interactive Operations Dashboard & Analytics
+streamlit>=1.28.0
+plotly>=5.17.0
+
+# Terminal UI & Telemetry
+rich>=13.6.0
+
+# Enterprise Microservice Sidecar REST API
+fastapi>=0.100.0
+uvicorn>=0.20.0
+
+# Optional Neural Embedder (Native sentence-transformers)
+# Note: On air-gapped IBM Z / s390x environments, ZetaCore's built-in
+# CompactVectorFallback provides sub-millisecond SIMD mathematical embeddings
+# without requiring heavy PyTorch or network downloads.
+# sentence-transformers>=2.2.2

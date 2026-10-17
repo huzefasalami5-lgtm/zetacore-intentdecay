@@ -1,0 +1,30 @@
+# ==============================================================================
+# docker-compose.yml: ZetaCore IntentDecay Mainframe Co-Located Stack
+# IBM Z Datathon 2026: AI Secured: Innovation Without Exposure
+# ==============================================================================
+version: '3.8'
+
+services:
+  zetacore-sidecar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zetacore-intentdecay-sidecar
+    restart: unless-stopped
+    ports:
+      - "8000:8000"   # Sidecar REST API (Swagger docs at /docs)
+      - "8501:8501"   # Operations Dashboard
+    environment:
+      - PYTHONUNBUFFERED=1
+      - IBMZ_MODE=s390x_simulation
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/v1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - ibmz-secure-mesh
+
+networks:
+  ibmz-secure-mesh:
+    driver: bridge
